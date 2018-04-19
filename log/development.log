@@ -1,0 +1,710 @@
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (126.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "fantasy_houses_development"[0m
+  [1m[35m (126.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "fantasy_houses_test"[0m
+  [1m[35m (29.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (23.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8546372934869750190)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateHouses (20180419184953)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (24.2ms)[0m  [1m[35mCREATE TABLE "houses" ("id" bigserial primary key, "name" character varying NOT NULL, "author" character varying NOT NULL, "source" character varying NOT NULL, "motto" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180419184953"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-04-19 18:53:19.045320"], ["updated_at", "2018-04-19 18:53:19.045320"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8546372934869750190)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2018-04-19 15:15:46 -0400
+  [1m[35m (7.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/kevin/.rbenv/versions/2.3.6/lib/ruby/gems/2.3.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/kevin/.rbenv/versions/2.3.6/lib/ruby/gems/2.3.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (9.3ms)
+Completed 200 OK in 20ms (Views: 16.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses" for ::1 at 2018-04-19 15:15:48 -0400
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for HousesController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+rack (2.0.3) lib/rack/handler/webrick.rb:86:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/server.rb:314:in `block in start_thread'
+Started GET "/houses/new" for ::1 at 2018-04-19 15:15:50 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered houses/new.html.erb within layouts/application (34.4ms)
+Completed 200 OK in 440ms (Views: 408.3ms | ActiveRecord: 9.9ms)
+
+
+Started POST "/houses" for ::1 at 2018-04-19 15:16:31 -0400
+Processing by HousesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1De7mcMdTy3zOwEHs4dHw+1fSfG4VxWZiVlDdKU3dJvgXGjjfOUqg0vbS8ueQHHWzVwvfmx3voLGLOJtQwaG3g==", "house"=>{"name"=>"fdsa", "author"=>"fds", "source"=>"sdf", "motto"=>"df"}, "commit"=>"Create House"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (13.1ms)[0m  [1m[32mINSERT INTO "houses" ("name", "author", "source", "motto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "fdsa"], ["author", "fds"], ["source", "sdf"], ["motto", "df"], ["created_at", "2018-04-19 19:16:31.914742"], ["updated_at", "2018-04-19 19:16:31.914742"]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/houses/1
+Completed 302 Found in 24ms (ActiveRecord: 18.8ms)
+
+
+Started GET "/houses/1" for ::1 at 2018-04-19 15:16:31 -0400
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for HousesController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+rack (2.0.3) lib/rack/handler/webrick.rb:86:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/server.rb:314:in `block in start_thread'
+Started POST "/houses" for ::1 at 2018-04-19 15:18:51 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HousesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1De7mcMdTy3zOwEHs4dHw+1fSfG4VxWZiVlDdKU3dJvgXGjjfOUqg0vbS8ueQHHWzVwvfmx3voLGLOJtQwaG3g==", "house"=>{"name"=>"fdsa", "author"=>"fds", "source"=>"sdf", "motto"=>"df"}, "commit"=>"Create House"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "houses" ("name", "author", "source", "motto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "fdsa"], ["author", "fds"], ["source", "sdf"], ["motto", "df"], ["created_at", "2018-04-19 19:18:51.393171"], ["updated_at", "2018-04-19 19:18:51.393171"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/houses/2
+Completed 302 Found in 35ms (ActiveRecord: 11.2ms)
+
+
+Started GET "/houses/2" for ::1 at 2018-04-19 15:18:51 -0400
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for HousesController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+rack (2.0.3) lib/rack/handler/webrick.rb:86:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/server.rb:314:in `block in start_thread'
+Started GET "/houses" for ::1 at 2018-04-19 15:22:30 -0400
+Processing by HousesController#index as HTML
+Completed 406 Not Acceptable in 43ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::UnknownFormat (HousesController#index is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.1.4) lib/action_controller/metal/implicit_render.rb:53:in `default_render'
+actionpack (5.1.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.1.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.1.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:186:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.1.4) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.4) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+rack (2.0.3) lib/rack/handler/webrick.rb:86:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+/Users/kevin/.rbenv/versions/2.3.6/lib/ruby/2.3.0/webrick/server.rb:314:in `block in start_thread'
+Started GET "/houses/new" for ::1 at 2018-04-19 15:22:36 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.9ms)
+  Rendered houses/new.html.erb within layouts/application (23.1ms)
+Completed 200 OK in 266ms (Views: 248.2ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:26:09 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (8.2ms)
+  Rendered houses/new.html.erb within layouts/application (25.9ms)
+Completed 200 OK in 308ms (Views: 287.7ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:26:10 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.7ms)
+  Rendered houses/new.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:26:44 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.8ms)
+  Rendered houses/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 21ms (Views: 19.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:27:03 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.6ms)
+  Rendered houses/new.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 19ms (Views: 18.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:27:06 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.5ms)
+  Rendered houses/new.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 14ms (Views: 12.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:28:27 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (1.7ms)
+  Rendered houses/new.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 58ms (Views: 28.0ms | ActiveRecord: 11.5ms)
+
+
+Started GET "/houses" for ::1 at 2018-04-19 15:30:44 -0400
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  Rendered houses/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 266ms (Views: 261.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:31:00 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (1.7ms)
+  Rendered houses/new.html.erb within layouts/application (21.1ms)
+Completed 200 OK in 53ms (Views: 32.2ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/houses" for ::1 at 2018-04-19 15:32:17 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 21ms (Views: 19.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/houses" for ::1 at 2018-04-19 15:35:16 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 15:35:17 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.6ms)
+  Rendered houses/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 15ms (Views: 14.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/houses" for ::1 at 2018-04-19 15:35:28 -0400
+Processing by HousesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SNKskIc5sfgja3iGz5rPParc3mOOI8m2G6FNYElzDNF8uX/qOMHUVpuLMkriXfkoit+47FoDYq1U1Ox5r0L+lA==", "house"=>{"name"=>"Potato", "author"=>"Head", "source"=>"lalala", "motto"=>"Potato is great\r\n"}, "commit"=>"Add House"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (6.1ms)[0m  [1m[32mINSERT INTO "houses" ("name", "author", "source", "motto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Potato"], ["author", "Head"], ["source", "lalala"], ["motto", "Potato is great\r\n"], ["created_at", "2018-04-19 19:35:28.242625"], ["updated_at", "2018-04-19 19:35:28.242625"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/houses/3
+Completed 302 Found in 13ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/houses/3" for ::1 at 2018-04-19 15:35:28 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.7ms)
+  Rendered houses/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 19ms (Views: 12.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/houses" for ::1 at 2018-04-19 15:35:30 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 13ms (Views: 10.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/houses" for ::1 at 2018-04-19 15:44:14 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (15.8ms)
+Completed 200 OK in 36ms (Views: 25.8ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/houses/3" for ::1 at 2018-04-19 15:44:15 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.7ms)
+  Rendered houses/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 19ms (Views: 15.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 15:44:16 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 14ms (Views: 12.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/houses/3" for ::1 at 2018-04-19 15:44:20 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (0.6ms)
+  Rendered houses/show.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 50ms (Views: 13.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 15:44:21 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 16:09:09 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 42ms (Views: 30.7ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 16:09:11 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (1.4ms)
+  Rendered houses/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 26ms (Views: 21.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/houses" for ::1 at 2018-04-19 16:09:19 -0400
+Processing by HousesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pGC1CE2M0YxMwFztuBikE/Sk5Cq6GW4hGPbjssTZ4N2QC2Zy8nS0IvQgFiGV35IG1KeCpW45xTpXg0KrIugSmA==", "house"=>{"name"=>"Yoko", "author"=>"Ono", "source"=>"Wow", "motto"=>"Please"}, "commit"=>"Add House"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "houses" ("name", "author", "source", "motto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Yoko"], ["author", "Ono"], ["source", "Wow"], ["motto", "Please"], ["created_at", "2018-04-19 20:09:19.306065"], ["updated_at", "2018-04-19 20:09:19.306065"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/houses/4
+Completed 302 Found in 15ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/houses/4" for ::1 at 2018-04-19 16:09:19 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered layouts/_flash.html.erb (1.0ms)
+  Rendered houses/show.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 26ms (Views: 22.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/houses/4" for ::1 at 2018-04-19 16:10:05 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 46ms (Views: 21.0ms | ActiveRecord: 7.4ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 16:10:07 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 27ms (Views: 24.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 16:10:08 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered houses/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 28ms (Views: 26.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/houses" for ::1 at 2018-04-19 16:10:15 -0400
+Processing by HousesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ztiwJaB6fFOtEs76/ne7wWKYlLVf4x6pjyqGX+Tcf+n6s2NfH4IZ/RXyhDbTsI3UQpvyOovDtbLAXydGAu2NrA==", "house"=>{"name"=>"aaa", "author"=>"bbbbb", "source"=>"cccc", "motto"=>"ddd"}, "commit"=>"Add House"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "houses" ("name", "author", "source", "motto", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "aaa"], ["author", "bbbbb"], ["source", "cccc"], ["motto", "ddd"], ["created_at", "2018-04-19 20:10:15.056244"], ["updated_at", "2018-04-19 20:10:15.056244"]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/houses/5
+Completed 302 Found in 13ms (ActiveRecord: 7.2ms)
+
+
+Started GET "/houses/5" for ::1 at 2018-04-19 16:10:15 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 19ms (Views: 15.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 16:10:16 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 0.4ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8546372934869750190)[0m
+  [1m[35m (7.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMembers (20180419201322)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (27.2ms)[0m  [1m[35mCREATE TABLE "members" ("id" bigserial primary key, "first_name" character varying NOT NULL, "last_name" character varying NOT NULL, "house_id" bigint NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_members_on_house_id" ON "members"  ("house_id")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180419201322"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8546372934869750190)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2018-04-19 16:28:31 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 43ms (Views: 25.3ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/houses/5" for ::1 at 2018-04-19 16:28:39 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.4ms)
+
+
+  
+SyntaxError (/Users/kevin/rails-marathon/app/views/houses/show.html.erb:8: syntax error, unexpected '<'
+    <%= member.first_name 
+     ^
+/Users/kevin/rails-marathon/app/views/houses/show.html.erb:15: syntax error, unexpected keyword_ensure, expecting keyword_end
+/Users/kevin/rails-marathon/app/views/houses/show.html.erb:17: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/views/houses/show.html.erb:8: syntax error, unexpected '<'
+app/views/houses/show.html.erb:15: syntax error, unexpected keyword_ensure, expecting keyword_end
+app/views/houses/show.html.erb:17: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/houses/5" for ::1 at 2018-04-19 16:30:26 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mHouse Load (0.9ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  [1m[36mMember Load (8.2ms)[0m  [1m[34mSELECT "members".* FROM "members" WHERE "members"."house_id" = $1[0m  [["house_id", 5]]
+  Rendered houses/show.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 41ms (Views: 25.2ms | ActiveRecord: 11.8ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 16:30:28 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 23ms (Views: 20.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 17:24:20 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (29.4ms)
+Completed 200 OK in 70ms (Views: 50.2ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/houses/5" for ::1 at 2018-04-19 17:24:22 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mHouse Load (0.6ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  [1m[36mMember Load (0.5ms)[0m  [1m[34mSELECT "members".* FROM "members" WHERE "members"."house_id" = $1[0m  [["house_id", 5]]
+  Rendered houses/show.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 39ms (Views: 23.3ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/houses/5/members/new" for ::1 at 2018-04-19 17:24:24 -0400
+Processing by MembersController#new as HTML
+  Parameters: {"house_id"=>"5"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering members/new.html.erb within layouts/application
+  Rendered members/new.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 40ms (Views: 25.0ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/houses/5/members" for ::1 at 2018-04-19 17:24:32 -0400
+Processing by MembersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tgohg9mmM3UP3nRjwa3WkUQajK7AKjng7MSMEdPInm2CYfL5Zl5W27c+Pq/sauCEZBnqIRQKkvujsS0INflsKA==", "member"=>{"first_name"=>"Harry putter", "last_name"=>"putter"}, "commit"=>"Add Member", "house_id"=>"5"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "members" ("first_name", "last_name", "house_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["first_name", "Harry putter"], ["last_name", "putter"], ["house_id", 5], ["created_at", "2018-04-19 21:24:32.394013"], ["updated_at", "2018-04-19 21:24:32.394013"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/houses/5
+Completed 302 Found in 17ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/houses/5" for ::1 at 2018-04-19 17:24:32 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  [1m[36mMember Load (0.5ms)[0m  [1m[34mSELECT "members".* FROM "members" WHERE "members"."house_id" = $1[0m  [["house_id", 5]]
+  Rendered houses/show.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 21ms (Views: 17.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2018-04-19 17:24:41 -0400
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/houses/5" for ::1 at 2018-04-19 17:24:47 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  [1m[36mMember Load (0.5ms)[0m  [1m[34mSELECT "members".* FROM "members" WHERE "members"."house_id" = $1[0m  [["house_id", 5]]
+  Rendered houses/show.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 24ms (Views: 18.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/houses/5/members/new" for ::1 at 2018-04-19 17:24:48 -0400
+Processing by MembersController#new as HTML
+  Parameters: {"house_id"=>"5"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering members/new.html.erb within layouts/application
+  Rendered members/new.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 29ms (Views: 26.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/houses/new" for ::1 at 2018-04-19 17:25:23 -0400
+Processing by HousesController#new as HTML
+  Rendering houses/new.html.erb within layouts/application
+  Rendered houses/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 19ms (Views: 15.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/houses" for ::1 at 2018-04-19 17:25:24 -0400
+Processing by HousesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"20FUlS18VnR78G1vT0/MNyJAD1DMStR1KfboXhWW5APvKofvkoQz2sMQJ6NiiPoiAkNp3xhqf25mg0lH86cWRg==", "house"=>{"name"=>"", "author"=>"", "source"=>"", "motto"=>""}, "commit"=>"Add House"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  Rendering houses/new.html.erb within layouts/application
+  Rendered houses/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 24ms (Views: 18.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/houses/5" for ::1 at 2018-04-19 17:25:40 -0400
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  [1m[36mMember Load (0.5ms)[0m  [1m[34mSELECT "members".* FROM "members" WHERE "members"."house_id" = $1[0m  [["house_id", 5]]
+  Rendered houses/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 22ms (Views: 18.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/houses/5/members/new" for ::1 at 2018-04-19 17:25:41 -0400
+Processing by MembersController#new as HTML
+  Parameters: {"house_id"=>"5"}
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering members/new.html.erb within layouts/application
+  Rendered members/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 19ms (Views: 15.8ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/houses/5/members" for ::1 at 2018-04-19 17:25:42 -0400
+Processing by MembersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hBrrJGwQ4XlQ3ks2vWitilvH9RnZnuLMCPhsrtafFjKwcThe0+iE1+g+AfqQr5ufe8STlg2+SddHjc23MK7kdw==", "member"=>{"first_name"=>"", "last_name"=>""}, "commit"=>"Add Member", "house_id"=>"5"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  Rendering members/new.html.erb within layouts/application
+  Rendered members/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 19ms (Views: 13.1ms | ActiveRecord: 1.0ms)
+
+
